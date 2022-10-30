@@ -1,5 +1,5 @@
 # Noella's Weather App
-## PyQt Desktop Application
+*Made with PyQt5*
 
 I made this project because I wanted to improve my Python skills as well as learn to make GUIs 
 using the PyQt5 framework. To make this app, I wanted to follow the Model-View-Controller pattern.
@@ -17,11 +17,13 @@ I also will try to get a more detailed weather report, possibly by the hour inst
 the whole day.
 
 ### Screenshots
-
+ 
 **Input Window**
+ 
 ![screenshot of input window](https://i.imgur.com/xWbLjdC.png)
 
 **Results Window**
+ 
 ![screenshot of input window](https://i.imgur.com/zUZeGYH.png)
 
 I hope you enjoy the application!
