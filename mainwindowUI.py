@@ -1,48 +1,61 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMainWindow, QHBoxLayout
 
-class MainWindow(object):
-    def __init__(self, Dialog):
+
+class MainWindow(QMainWindow):
+    def __init__(self, _inputWidget, _resultsWidget):
         super().__init__()
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(400, 400)
-        Dialog.setMinimumSize(QtCore.QSize(251, 200))
-        self.lineEdit = QtWidgets.QLineEdit(Dialog)
-        self.lineEdit.setGeometry(QtCore.QRect(170, 70, 121, 40))
-        self.lineEdit.setObjectName("lineEdit")
 
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(90, 70, 50, 40))
-        self.label.setObjectName("label")
+        self.inputWidget = _inputWidget
+        self.resultsWidget = _resultsWidget
 
-        self.labelTitle = QtWidgets.QLabel(Dialog)
-        self.labelTitle.setGeometry(QtCore.QRect(80, 20, 250, 16))
-        self.labelTitle.setObjectName("label_2")
+        # creating stacked widgets, so we can switch inbetween the input and result screens
+        self.stack = QtWidgets.QStackedWidget(self)
+        self.stack.addWidget(self.inputWidget)
+        self.stack.addWidget(self.resultsWidget)
+        self.stack.setCurrentWidget(self.inputWidget)
 
-        self.failedNotice = QtWidgets.QLabel(Dialog)
-        self.failedNotice.setGeometry(QtCore.QRect(120, 270, 250, 40))
-        self.failedNotice.setObjectName("failedNotice")
+        window = QtWidgets.QWidget()
+        mainLayout = QHBoxLayout()
 
-        self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(150, 150, 80, 40))
-        self.pushButton.setObjectName("Submit")
+        window.setLayout(mainLayout)
+        mainLayout.addWidget(self.stack)
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.setCentralWidget(window)
+        self.resize(1000, 450)
+        self.setMinimumSize(QtCore.QSize(800, 350)) # sets the size of the window
+        self.setWindowTitle("Noella's Weather App")
 
-    def retranslateUi(self, Dialog):
-        _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label.setText(_translate("Dialog", "City :"))
-        self.labelTitle.setText(_translate("Dialog", "Get your latest weather forecast!"))
-        self.failedNotice.setText(_translate("Dialog", " "))
-        self.pushButton.setText(_translate("Dialog", "Submit"))
+        QtCore.QMetaObject.connectSlotsByName(self)
 
-    def inputfailed(self):
-        self.failedNotice.setText("Invalid city, try again")
-        self.lineEdit.setText(" ")
+    def editresults(self, imageProfile, model):
+        # to edit the results screen
+        print("results being edited...")
 
-    def gettext(self):
-        print("got text")
-        return self.lineEdit.text()
+        self.resultsWidget.title.setText(model.city)
+        self.setWindowTitle(f"{model.city} Weather")
+
+        self.resultsWidget.graphicsView.setPixmap(QtGui.QPixmap.fromImage(imageProfile[0]))
+        self.resultsWidget.graphicsView_2.setPixmap(QtGui.QPixmap.fromImage(imageProfile[1]))
+        self.resultsWidget.graphicsView_3.setPixmap(QtGui.QPixmap.fromImage(imageProfile[2]))
+
+        self.resultsWidget.day1.setText(model.d1)
+        self.resultsWidget.day2.setText(model.d2)
+        self.resultsWidget.day3.setText(model.d3)
+
+        self.resultsWidget.weathertype1.setText(model.weather[0])
+        self.resultsWidget.weathertype2.setText(model.weather[1])
+        self.resultsWidget.weathertype3.setText(model.weather[2])
+
+        self.resultsWidget.maxt1.setText(f"{model.maxTemp[0]}")
+        self.resultsWidget.maxt2.setText(f"{model.maxTemp[1]}")
+        self.resultsWidget.maxt3.setText(f"{model.maxTemp[2]}")
+
+        self.resultsWidget.mint.setText(f"{model.minTemp[0]}")
+        self.resultsWidget.mint2.setText(f"{model.minTemp[1]}")
+        self.resultsWidget.mint3.setText(f"{model.minTemp[2]}")
+
+        self.stack.setCurrentWidget(self.resultsWidget)
+
 
 
