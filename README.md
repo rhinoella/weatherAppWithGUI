@@ -1,5 +1,5 @@
 # Noella's Weather App
-##PyQt Desktop Application
+## PyQt Desktop Application
 
 I made this project because I wanted to improve my Python skills as well as learn to make GUIs 
 using the PyQt5 framework. To make this app, I wanted to follow the Model-View-Controller pattern.
