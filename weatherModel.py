@@ -86,11 +86,11 @@ class WeatherModel(object):
         except: # if it is a string (what we want)
             # this will acess the API that converts city names to their geocode
             geocoding = requests.get(f"https://nominatim.openstreetmap.org/search?city={input}&format=json")
-            if len(geocoding.json()) == 0: # if the city doesn't exist, the json file will be empty
+            if len(geocoding.json()) == 0:  # if the city doesn't exist, the json file will be empty
                 return False
             else:
                 self._geocoding = geocoding
-                self._city = input
+                self._city = input.capitalize()
                 return True
         else:  # if it is an int, function will return false
             return False
