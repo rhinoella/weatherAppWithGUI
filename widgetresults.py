@@ -17,8 +17,6 @@ class ResultsWidget(QtWidgets.QWidget):
         super().__init__()
 
         self.setObjectName("Results")
-        self.resize(301, 236)
-        self.setGeometry(QtCore.QRect(30, 60, 241, 141))
 
         font = QtGui.QFont()
         font.setFamily("Segoe UI Semilight")
@@ -166,17 +164,21 @@ class ResultsWidget(QtWidgets.QWidget):
         self.mint3.setObjectName("mint3")
         self.gridLayout.addWidget(self.mint3, 5, 2, 1, 1)
 
-        self.blank = QtWidgets.QLabel(self)
+        # adding spacing above the button
+        self.spacer = QtWidgets.QSpacerItem(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(self.spacer, 6, 0, 1, 3)
+
         font = QtGui.QFont()
         font.setFamily("Segoe UI Semilight")
         font.setPointSize(9)
-        self.blank.setFont(font)
-        self.blank.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.blank.setObjectName("blank")
-        self.blank.setText(" ")
-        self.gridLayout.addWidget(self.blank, 6, 0, 1, 1)
-        self.gridLayout.addWidget(self.blank, 6, 1, 1, 1)
-        self.gridLayout.addWidget(self.blank, 6, 2, 1, 1)
+        self.backButton = QtWidgets.QPushButton(self)
+        self.backButton.setFont(font)
+        self.backButton.setObjectName("backButton")
+        self.backButton.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        self.backButton.setText("Back")
+        self.gridLayout.addWidget(self.backButton, 7, 1, 1, 1, QtCore.Qt.AlignmentFlag.AlignCenter)
+        # adding spacing below button
+        self.gridLayout.addItem(self.spacer, 8, 0, 1, 3)
 
         QtCore.QMetaObject.connectSlotsByName(self)
 

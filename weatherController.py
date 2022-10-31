@@ -9,6 +9,11 @@ class WeatherController:
         # connecting the button/lineedit to the submit function
         self._view.inputWidget.lineEdit.returnPressed.connect(self.submit)  # when 'enter' is pressed
         self._view.inputWidget.submitButton.clicked.connect(self.submit)  # when the button is clicked
+        self._view.resultsWidget.backButton.clicked.connect(self.back)
+
+    def back(self):  # goes back to the input widget
+        self._view.inputWidget.lineEdit.clear()
+        self._view.stack.setCurrentWidget(self._view.inputWidget)
 
     def submit(self):
         print("button has been pressed")
