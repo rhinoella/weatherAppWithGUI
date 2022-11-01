@@ -20,10 +20,10 @@ the whole day.
  
 **Input Window**
  
-![screenshot of input window](https://imgur.com/7fWKa22)
+![screenshot of input window](https://i.imgur.com/7fWKa22.png)
 
 **Results Window**
  
-![screenshot of input window](https://imgur.com/ap2ZfUW)
+![screenshot of input window](https://i.imgur.com/ap2ZfUW.png)
 
 I hope you enjoy the application!
